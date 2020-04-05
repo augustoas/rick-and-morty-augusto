@@ -1,0 +1,34 @@
+{% extends "blog/base.html" %} 
+{% block content %} 
+    
+    <article class="media content-section">
+        <div class="media-body">
+            <div class="article-metadata">
+                <h2><a class="title" > {{ episode.name }} </a></h2>
+                <a class="mr-2" > On air since {{episode.air_date}}</a>                
+            </div>
+            <h3><a class="mr-2" >{{episode.episode}} | Characters</a></h3>
+            
+            
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Character</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for char in characters %}
+                        <tr>
+                            <td><a class="article-title" href="{% url 'blog-character_info' id=char.id %}" >{{ char.name }}</a></td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+
+            
+
+        </div>
+    </article>
+
+{% endblock content %}

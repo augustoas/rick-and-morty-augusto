@@ -1,0 +1,33 @@
+ {% extends "blog/base.html" %} {% block content %}
+
+<div class="body">
+    <img src="/static/rick-morty.png" class="img-fluid" alt="Responsive image">
+
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Episode</th>
+                <th scope="col">Title</th>
+                <th scope="col">Release Date</th>
+                <th scope="col">Code</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for ep in episodes %}
+            <tr>
+                <td>{{ ep.id }}</td>
+                <td><a class="article-title" href="{% url 'blog-episode_info' id=ep.id %}">{{ ep.name }}</a></td>
+                <td>{{ ep.air_date }}</td>
+                <td>{{ ep.episode }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+
+
+</div>
+
+
+
+{% endblock content %}

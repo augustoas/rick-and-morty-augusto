@@ -1,0 +1,60 @@
+{% extends "blog/base.html" %} 
+{% block content %} 
+    
+    <article class="media content-section">
+        <div class="media-body">
+            <h1>{{character.name}}</h1>
+            <img src="{{character.image}}" >
+            
+        </div>
+
+        <div class="media-body">
+            
+            <div class="article-metadata">
+                <h1>Information</h1>
+                <h6> Status: {{character.status}}</h6>
+                <h6> Species: {{character.species}}</h6>
+
+                <h1>Places</h1>
+                <div class="article-metadata">
+                    {% if character.location.name != 'unknown'%}
+                        <h6><a class="article-title" href="{% url 'blog-place_info' id=char_location_id %}">Last seen: {{character.location.name}} </a></h6>
+                    {% else %}
+                        <h6><a class="article-title" href="#">Last seen: {{character.location.name}} </a></h6>
+                    {% endif %}
+
+                
+                    {% if character.origin.name != 'unknown'%}
+                        <h6><a class="article-title" href="{% url 'blog-place_info' id=char_origin_id %}">Origin: {{character.origin.name}} </a></h6>
+                    {% else %}
+                        <h6><a class="article-title" href="#">Origin: {{character.origin.name}} </a></h6>
+                    {% endif %}
+
+                </div>
+            </div>
+
+             
+        </div>
+
+    </article>
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Episode</th>
+                <th scope="col">Title</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for ep in episodes_char %}
+            <tr>
+                <td>{{ ep.id }}</td>
+                <td><a class="article-title" href="{% url 'blog-episode_info' id=ep.id %}">{{ ep.name }}</a></td>
+
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    
+
+{% endblock content %}

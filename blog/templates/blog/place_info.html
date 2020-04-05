@@ -1,0 +1,33 @@
+{% extends "blog/base.html" %} 
+{% block content %} 
+    
+    <article class="media content-section">
+        <div class="media-body">
+            
+            <h2> Location: {{place.name}}  </h2>
+            
+            <h3>Place Information</h3>
+            <h6>Type: {{place.type}}</h6>
+            <h6>Dimension: {{place.dimension}}</h6>
+
+            <h3>Residents</h3>
+
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Character</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for char in residents %}
+                        <tr>
+                            <td><a class="article-title" href="{% url 'blog-character_info' id=char.id %}" >{{ char.name }}</a></td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+        </div>
+    </article>
+
+{% endblock content %}

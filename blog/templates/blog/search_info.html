@@ -1,0 +1,64 @@
+{% extends "blog/base.html" %} 
+{% block content %} 
+        <h2>Results for '{{query}}'</h2>
+        <h2>Episodes</h2>
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Episode</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Code</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for ep in episodes %}
+                <tr>
+                    <td>{{ ep.id }}</td>
+                    <td><a class="article-title" href="{% url 'blog-episode_info' id=ep.id %}">{{ ep.name }}</a></td>
+                    <td>{{ ep.episode }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table> 
+
+
+        <h2>Characters</h2>
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Character</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for char in characters %}
+                <tr>
+                    <td><h6><a class="article-title" href="{% url 'blog-character_info' id=char.id %}" >{{char.name }} </a></h6></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table> 
+
+        <h2>Locations</h2>
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Locations</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for l in places %}
+                <tr>
+                    <td><h6><a class="article-title" href="{% url 'blog-place_info' id=l.id %}" >{{l.name }} </a></h6></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table> 
+
+            
+
+
+
+
+
+
+{% endblock content %}

@@ -7,23 +7,23 @@ def generate_request(url, params={}):
         return response.json()
 
 def get_all_episodes(params={}): #CAMBIAR EL HOME INICIAL POR CONSULTA MÚLTIPLE.
-    res = generate_request('https://rickandmortyapi.com/api/episode', params)
+    res = generate_request('https://integracion-rick-morty-api.herokuapp.com/api/episode', params)
     total_ep_list = [x+1 for x in range(int(res['info']['count']))] 
-    response = generate_request(f'https://rickandmortyapi.com/api/episode/{total_ep_list}', params)
+    response = generate_request(f'https://integracion-rick-morty-api.herokuapp.com/api/episode/{total_ep_list}', params)
     if response:
         return response
 
     return ''
 
 def get_episodes(list_id, params={}):
-    response = generate_request(f'https://rickandmortyapi.com/api/episode/{list_id}', params)
+    response = generate_request(f'https://integracion-rick-morty-api.herokuapp.com/api/episode/{list_id}', params)
     if response:
         return response
 
     return ''
 
 def get_episode_info(id,params={}):
-    response = generate_request(f'https://rickandmortyapi.com/api/episode/{id}', params)
+    response = generate_request(f'https://integracion-rick-morty-api.herokuapp.com/api/episode/{id}', params)
 
     if response:
         return response
@@ -31,9 +31,9 @@ def get_episode_info(id,params={}):
     return ''
 
 def get_all_characters(params={}): #CAMBIAR EL HOME INICIAL POR CONSULTA MÚLTIPLE.
-    res = generate_request('https://rickandmortyapi.com/api/character', params)
+    res = generate_request('https://integracion-rick-morty-api.herokuapp.com/api/character', params)
     total_char_list = [x+1 for x in range(int(res['info']['count']))] 
-    response = generate_request(f'https://rickandmortyapi.com/api/character/{total_char_list}', params)
+    response = generate_request(f'https://integracion-rick-morty-api.herokuapp.com/api/character/{total_char_list}', params)
     if response:
         return response
 
@@ -41,7 +41,7 @@ def get_all_characters(params={}): #CAMBIAR EL HOME INICIAL POR CONSULTA MÚLTIP
 
 def get_characters(list_id,params={}):
 
-    response = generate_request(f'https://rickandmortyapi.com/api/character/{list_id}', params)
+    response = generate_request(f'https://integracion-rick-morty-api.herokuapp.com/api/character/{list_id}', params)
 
     if response:
         return response
@@ -50,7 +50,7 @@ def get_characters(list_id,params={}):
 
 def get_character(id,params={}):
 
-    response = generate_request(f'https://rickandmortyapi.com/api/character/{id}', params)
+    response = generate_request(f'https://integracion-rick-morty-api.herokuapp.com/api/character/{id}', params)
 
     if response:
         return response
@@ -58,23 +58,23 @@ def get_character(id,params={}):
     return ''
 
 def get_all_places(params={}): #CAMBIAR EL HOME INICIAL POR CONSULTA MÚLTIPLE.
-    res = generate_request('https://rickandmortyapi.com/api/location', params)
+    res = generate_request('https://integracion-rick-morty-api.herokuapp.com/api/location', params)
     total_pl_list = [x+1 for x in range(int(res['info']['count']))] 
-    response = generate_request(f'https://rickandmortyapi.com/api/location/{total_pl_list}', params)
+    response = generate_request(f'https://integracion-rick-morty-api.herokuapp.com/api/location/{total_pl_list}', params)
     if response:
         return response
 
     return ''
 
 def get_place(id, params={}):
-    response = generate_request(f'https://rickandmortyapi.com/api/location/{id}', params)
+    response = generate_request(f'https://integracion-rick-morty-api.herokuapp.com/api/location/{id}', params)
     if response:
         return response
 
     return ''
 
 def get_places(list_id, params={}):
-    response = generate_request(f'https://rickandmortyapi.com/api/location/{list_id}', params)
+    response = generate_request(f'https://integracion-rick-morty-api.herokuapp.com/api/location/{list_id}', params)
     if response:
         return response['results']
 

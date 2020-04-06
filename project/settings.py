@@ -25,7 +25,7 @@ SECRET_KEY = 'n$m_51)5k#!k&!xe&%js8vqhmy0n)dn8=b5g&y5@4hr4if)&)k'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['rick-morty-api-augusto.herokuapp.com']
 #'rick-morty-api-augusto.herokuapp.com'
 
 

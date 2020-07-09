@@ -7,41 +7,64 @@ def generate_request(url, params={}):
         return response.json()
 
 def get_all_episodes(params={}): #CAMBIAR EL HOME INICIAL POR CONSULTA MÚLTIPLE.
-    res = generate_request('https://integracion-rick-morty-api.herokuapp.com/api/episode', params)
-    total_ep_list = [x+1 for x in range(int(res['info']['count']))] 
-    response = generate_request(f'https://integracion-rick-morty-api.herokuapp.com/api/episode/{total_ep_list}', params)
+
+    response = []
+    for p in range(2):
+        page = generate_request('https://rickandmortyapi.com/graphql?query={episodes(page:'+str(p+1)+'){results{name,id,air_date,episode}}}', params)
+        response += page['data']['episodes']['results']
+
     if response:
         return response
-
-    return ''
-
-def get_episodes(list_id, params={}):
-    response = generate_request(f'https://integracion-rick-morty-api.herokuapp.com/api/episode/{list_id}', params)
-    if response:
-        return response
-
     return ''
 
 def get_episode_info(id,params={}):
-    response = generate_request(f'https://integracion-rick-morty-api.herokuapp.com/api/episode/{id}', params)
+   
+    response = generate_request('https://rickandmortyapi.com/graphql?query={episode(id:'+str(id)+'){name,air_date,episode,characters{name, id}}}', params)
+    response = response['data']['episode']
+    if response:
+        return response
+
+    return ''
+
+def search_character(query,params={}): #CAMBIAR EL HOME INICIAL POR CONSULTA MÚLTIPLE.
+    response = []
+    for p in range(30):
+        url = 'https://rickandmortyapi.com/graphql?query={characters(page:'+str(p+1)+',filter:{name:"'+str(query)+'"}){results{name,id}}}'
+        page = generate_request(url, params)
+        if 'errors' in page.keys():
+            continue
+        else:
+            response += page['data']['characters']['results']
 
     if response:
         return response
 
     return ''
 
-def get_all_characters(params={}): #CAMBIAR EL HOME INICIAL POR CONSULTA MÚLTIPLE.
-    res = generate_request('https://integracion-rick-morty-api.herokuapp.com/api/character', params)
-    total_char_list = [x+1 for x in range(int(res['info']['count']))] 
-    response = generate_request(f'https://integracion-rick-morty-api.herokuapp.com/api/character/{total_char_list}', params)
+def search_location(query,params={}): #CAMBIAR EL HOME INICIAL POR CONSULTA MÚLTIPLE.
+    response = []
+    for p in range(5):
+        url = 'https://rickandmortyapi.com/graphql?query={locations(page:'+str(p+1)+',filter:{name:"'+str(query)+'"}){results{name,id}}}'
+        page = generate_request(url, params)
+        if 'errors' in page.keys():
+            continue
+        else:
+            response += page['data']['locations']['results']
+
     if response:
         return response
 
     return ''
 
-def get_characters(list_id,params={}):
-
-    response = generate_request(f'https://integracion-rick-morty-api.herokuapp.com/api/character/{list_id}', params)
+def search_episode(query,params={}): #CAMBIAR EL HOME INICIAL POR CONSULTA MÚLTIPLE.
+    response = []
+    for p in range(2):
+        url = 'https://rickandmortyapi.com/graphql?query={episodes(page:'+str(p+1)+',filter:{name:"'+str(query)+'"}){results{name,id, episode}}}'
+        page = generate_request(url, params)
+        if 'errors' in page.keys():
+            continue
+        else:
+            response += page['data']['episodes']['results']
 
     if response:
         return response
@@ -50,36 +73,21 @@ def get_characters(list_id,params={}):
 
 def get_character(id,params={}):
 
-    response = generate_request(f'https://integracion-rick-morty-api.herokuapp.com/api/character/{id}', params)
+    response = generate_request('https://rickandmortyapi.com/graphql?query={character(id:'+str(id)+'){name,status,species,image,location{name,id},origin{name,id},episode{name, id}}}', params)
+    response = response['data']['character']
 
-    if response:
-        return response
-
-    return ''
-
-def get_all_places(params={}): #CAMBIAR EL HOME INICIAL POR CONSULTA MÚLTIPLE.
-    res = generate_request('https://integracion-rick-morty-api.herokuapp.com/api/location', params)
-    total_pl_list = [x+1 for x in range(int(res['info']['count']))] 
-    response = generate_request(f'https://integracion-rick-morty-api.herokuapp.com/api/location/{total_pl_list}', params)
     if response:
         return response
 
     return ''
 
 def get_place(id, params={}):
-    response = generate_request(f'https://integracion-rick-morty-api.herokuapp.com/api/location/{id}', params)
+    
+    response = generate_request('https://rickandmortyapi.com/graphql?query={location(id:'+str(id)+'){name,id,type,dimension,residents{name,id}}}', params)
+    response = response['data']['location']
+
     if response:
         return response
 
     return ''
 
-def get_places(list_id, params={}):
-    response = generate_request(f'https://integracion-rick-morty-api.herokuapp.com/api/location/{list_id}', params)
-    if response:
-        return response['results']
-
-    return ''
-
-
-total_ep_list = [x+1 for x in range(10)]
-print(total_ep_list)

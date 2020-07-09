@@ -18,14 +18,14 @@
                 <h1>Places</h1>
                 <div class="article-metadata">
                     {% if character.location.name != 'unknown'%}
-                        <h6><a class="article-title" href="{% url 'blog-place_info' id=char_location_id %}">Last seen: {{character.location.name}} </a></h6>
+                        <h6><a class="article-title" href="{% url 'blog-place_info' id=char_location.id %}">Last seen: {{character.location.name}} </a></h6>
                     {% else %}
                         <h6><a class="article-title" href="#">Last seen: {{character.location.name}} </a></h6>
                     {% endif %}
 
                 
                     {% if character.origin.name != 'unknown'%}
-                        <h6><a class="article-title" href="{% url 'blog-place_info' id=char_origin_id %}">Origin: {{character.origin.name}} </a></h6>
+                        <h6><a class="article-title" href="{% url 'blog-place_info' id=char_origin.id %}">Origin: {{character.origin.name}} </a></h6>
                     {% else %}
                         <h6><a class="article-title" href="#">Origin: {{character.origin.name}} </a></h6>
                     {% endif %}
